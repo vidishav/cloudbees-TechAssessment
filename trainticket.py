@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
+import Flask,request,json
 
-app = Flask(__name__)
+app = Flask(-name-)
 tickets = []
 
-@app.route('/purchase_ticket', methods=['POST'])
+app.route('/purchase_ticket', methods=['POST'])
 def purchase_ticket():
-    data = request.json
+   data = request.json
     user = data.get('user')
     section = allocate_seat()
     ticket = {
@@ -18,23 +18,23 @@ def purchase_ticket():
     tickets.append(ticket)
     return jsonify(ticket)
 
-@app.route('/receipt/<username>', methods=['GET'])
+app.route('/receipt/<username>', methods=['GET'])
 def get_receipt(username):
     user_tickets = [ticket for ticket in tickets if ticket['user']['username'] == username]
     return jsonify(user_tickets)
 
-@app.route('/view_users_by_section/<section>', methods=['GET'])
+app.route('/view_users_by_section/<section>', methods=['GET'])
 def view_users_by_section(section):
     users_in_section = [{'user': ticket['user'], 'section': ticket['section']} for ticket in tickets if ticket['section'] == section]
     return jsonify(users_in_section)
 
-@app.route('/remove_user/<username>', methods=['DELETE'])
+app.route('/remove_user/<username>', methods=['DELETE'])
 def remove_user(username):
     global tickets
     tickets = [ticket for ticket in tickets if ticket['user']['username'] != username]
     return jsonify({'message': 'User removed successfully'})
 
-@app.route('/modify_seat/<username>', methods=['PUT'])
+app.route('/modify_seat/<username>', methods=['PUT'])
 def modify_seat(username):
     data = request.json
     for ticket in tickets:
