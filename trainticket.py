@@ -9,11 +9,12 @@ def purchase_ticket():
     user = data.get('user')
     section = allocate_seat()
     ticket = {
-        'from': data.get('from'),
-        'to': data.get('to'),
-        'user': user,
-        'price_paid': 20,
-        'section': section
+        from: data.get('from'),
+        to: data.get('to'),
+        user: user,
+        price_paid: 20,
+           
+section: section
     }
     tickets.append(ticket)
     return jsonify(ticket)
@@ -44,7 +45,7 @@ def modify_seat(username):
     return jsonify({'error': 'User not found'})
 
 def allocate_seat():
-    # Simple seat allocation logic (can be improved)
+    
     count_a = sum(1 for ticket in tickets if ticket['section'] == 'A')
     count_b = sum(1 for ticket in tickets if ticket['section'] == 'B')
     return 'A' if count_a <= count_b else 'B'
