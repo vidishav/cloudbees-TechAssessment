@@ -16,7 +16,7 @@ def purchase_ticket():
            
 section: section
     }
-    tickets.append(ticket)
+    
     return jsonify(ticket)
 
 app.route('/receipt/<username>', methods=['GET'])
